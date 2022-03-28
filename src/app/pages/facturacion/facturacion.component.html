@@ -1,0 +1,49 @@
+<h2 class="content-block">Facturación</h2>
+
+<form (ngSubmit)="agregar()">
+
+  <div class="content-block dx-card responsive-paddings">
+    <div class="dx-field">
+      <div class="dx-field-label">Clientes</div>
+      <div class="dx-field-value">
+        <dx-select-box [dataSource]="dataClientes" placeholder="Seleccionar cliente" [showClearButton]="true"
+          displayExpr="nombre" valueExpr="id" [value]="listaClientes[0].id"></dx-select-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Producto</div>
+      <div class="dx-field-value">
+        <dx-select-box [dataSource]="dataProductos" placeholder="Seleccionar producto" [showClearButton]="true"
+          displayExpr="nombre" valueExpr="id" [value]="listaProductos[0].id"></dx-select-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Cantidad</div>
+      <div class="dx-field-value">
+        <dx-number-box>
+          [min]="1"
+        </dx-number-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Vlr Total</div>
+      <div class="dx-field-value">
+        <dx-number-box>
+          [min]="1"
+        </dx-number-box>
+      </div>
+    </div>
+    <div class="buttons">
+      <div>
+        <dx-button stylingMode="contained" text="Agregar" type="success" [width]="120" (onClick)="agregar()">
+        </dx-button>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<div class="content-block dx-card responsive-paddings">
+  <!-- grid de datos -->
+  <grid-component></grid-component>
+</div>
