@@ -5,7 +5,7 @@ export class AppInfoService {
   constructor() {}
 
   public get title() {
-    return 'Prueba.FrontEndDev';
+    return 'Prueba Angular Pedro Colorado';
   }
 
   public get currentYear() {

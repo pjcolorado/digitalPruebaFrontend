@@ -1,5 +1,5 @@
 export const navigation = [
-  {
+/*  {
     text: 'Home',
     path: '/home',
     icon: 'home'
@@ -17,10 +17,10 @@ export const navigation = [
         path: '/tasks'
       }
     ]
-  },
+  },*/
   {
-    text: 'Facturación',
-    path: '/facturacion',
-    icon: 'invoice'
-  }
+    text: 'Factura',
+    path: '/factura',
+    icon: 'folder'
+  }  
 ];

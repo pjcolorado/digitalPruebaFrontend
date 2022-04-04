@@ -1,0 +1,86 @@
+<div class="content-block dx-card responsive-paddings">
+  <div class="dx-fieldset-header">Factura</div>
+  <div class="dx-field">
+    <div class="dx-field-label">Cliente</div>
+    <div class="dx-field-value">
+      <dx-select-box #cliente [dataSource]="listaClientes" placeholder="Seleccionar cliente" [showClearButton]="true"
+        displayExpr="nombre" valueExpr="id" (onValueChanged)="onClienteChange($event)" [searchEnabled]="true">
+        <dxi-validation-rule type="required" message="Producto requerido"></dxi-validation-rule>
+      </dx-select-box>
+    </div>
+  </div>
+  <div class="dx-field">
+    <div class="dx-field-label">Fecha</div>
+    <div class="dx-field-value">
+      <dx-date-box id="dtfecha" width="100%" [value]="myfactura.fecha">
+      </dx-date-box>
+    </div>
+  </div>
+</div>
+
+<div class="content-block dx-card responsive-paddings">
+  <form action="detalles" (submit)="AddDetalle($event)">
+    <div class="dx-fieldset-header">Detalles</div>
+    <div class="dx-field">
+      <div class="dx-field-label">Producto:</div>
+      <div class="dx-field-value">
+        <dx-select-box #producto id="productoSelect" displayExpr="nombre" valueExpr="id" [(dataSource)]="listaProductos"
+          [showClearButton]="true" placeholder="Seleccionar producto" (onValueChanged)="onProductoChange($event)"
+          [searchEnabled]="true">
+          <dx-validator>
+            <dxi-validation-rule type="required" message="Producto requerido"></dxi-validation-rule>
+          </dx-validator>
+        </dx-select-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Cantidad:</div>
+      <div class="dx-field-value">
+        <dx-number-box [(value)]="detalle.cantidad">
+          <dx-validator>
+            <dxi-validation-rule type="range" [min]=1 [max]=99 message="Cantidad requerida"></dxi-validation-rule>
+          </dx-validator>
+        </dx-number-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Valor Unitario:</div>
+      <div class="dx-field-value">
+        <dx-number-box format="$ #,##0.##" [(value)]="detalle.valorUnitario" [min]="1" [max]="999999">
+          <dx-validator>
+            <dxi-validation-rule type="range" [min]=1 [max]="999999" message="Valor requerido"></dxi-validation-rule>
+          </dx-validator>
+        </dx-number-box>
+      </div>
+    </div>
+    <div class="dx-fieldset float-end">
+      <dx-validation-summary id="summary"></dx-validation-summary>
+      <dx-button id="addButton" stylingMode="contained" text="+" type="default" [width]="120"
+        [useSubmitBehavior]="true">
+      </dx-button>
+    </div>
+  </form>
+  <dx-data-grid id="gridProductos" [dataSource]="myDetalles" [showBorders]="true" [remoteOperations]="true">
+    <dxi-column dataField="idProducto" dataType="number"> </dxi-column>
+    <dxi-column dataField="nombre" dataType="string"> </dxi-column>
+    <dxi-column dataField="cantidad" dataType="string"> </dxi-column>
+    <dxi-column dataField="valorUnitario" dataType="string"> </dxi-column>
+    <dxi-column dataField="valorTotal" dataType="string"> </dxi-column>
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[8, 12, 20]">
+    </dxo-pager>
+  </dx-data-grid>
+  <div class="dx-field">
+    <div class="dx-field-label">Total</div>
+    <div class="dx-field-value">
+      <dx-number-box id="total" width="50%" [value]="myfactura.totalVenta">
+      </dx-number-box>
+    </div>
+  </div>
+  <br>
+  <div class="dx-fieldset">
+    <dx-button id="saveButton" stylingMode="contained" text="Guardar" type="success" [width]="120"
+      (onClick)="facturar($event)">
+    </dx-button>
+  </div>
+</div>

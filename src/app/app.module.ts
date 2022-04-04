@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SideNavOuterToolbarModule, SideNavInnerToolbarModule, SingleCardModule } from './layouts';
@@ -8,15 +8,28 @@ import { FooterModule, ResetPasswordFormModule, CreateAccountFormModule, ChangeP
 import { AuthService, ScreenService, AppInfoService } from './shared/services';
 import { UnauthenticatedContentModule } from './unauthenticated-content';
 import { AppRoutingModule } from './app-routing.module';
-import { FacturacionService } from './shared/services/facturacion.service';
-import { GridModule } from './pages/facturacion/grid.component';
+import { FacturaService } from './shared/services/factura.service';
+import { FacturaComponent } from './pages/factura/factura.component';
+import {
+  DxButtonModule, DxCalendarModule, DxDateBoxModule, DxFormModule, DxNumberBoxModule, DxTemplateModule, DxTextBoxModule,
+  DxDataGridModule, DxValidationSummaryModule, DxValidatorModule, DxSelectBoxModule
+} from 'devextreme-angular';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FacturaComponent
   ],
   imports: [
     BrowserModule,
+    DxSelectBoxModule,
+    DxTextBoxModule,
+    DxDateBoxModule,
+    DxCalendarModule,
+    DxTemplateModule,
+    DxFormModule,
+    DxNumberBoxModule,
+    DxButtonModule,
     SideNavOuterToolbarModule,
     SideNavInnerToolbarModule,
     SingleCardModule,
@@ -28,13 +41,15 @@ import { GridModule } from './pages/facturacion/grid.component';
     UnauthenticatedContentModule,
     AppRoutingModule,
     HttpClientModule,
-    GridModule
+    DxDataGridModule,
+    DxValidatorModule,
+    DxValidationSummaryModule
   ],
   providers: [
     AuthService,
     ScreenService,
     AppInfoService,
-    FacturacionService
+    FacturaService
   ],
   bootstrap: [AppComponent]
 })

@@ -6,12 +6,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { DxDataGridModule, DxFormModule } from 'devextreme-angular';
-import { FacturacionComponent } from './pages/facturacion/facturacion.component';
+import { FacturaComponent } from './pages/factura/factura.component';
 
 const routes: Routes = [
   {
-    path: 'facturacion',
-    component: FacturacionComponent,
+    path: 'factura',
+    component: FacturaComponent,
     canActivate: [ AuthGuardService ]
   },
   {
